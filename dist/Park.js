@@ -1,7 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Park = void 0;
-class Park {
+export class Park {
+    lands;
+    averageWait;
+    shortestLand;
     constructor(lands) {
         this.lands = lands;
         this.setAverageWait();
@@ -46,4 +46,3 @@ class Park {
         return result;
     }
 }
-exports.Park = Park;

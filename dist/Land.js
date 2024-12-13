@@ -1,7 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Land = void 0;
-class Land {
+export class Land {
+    id;
+    name;
+    rides;
     constructor(id, name, rides) {
         this.id = id;
         this.name = name;
@@ -65,4 +65,3 @@ class Land {
         return result;
     }
 }
-exports.Land = Land;

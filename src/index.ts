@@ -1,5 +1,5 @@
-import { DisneylandResort } from "./DisneylandResort";
-import {Park} from "./Park";
+import { DisneylandResort } from "./DisneylandResort.ts";
+import {Park} from "./Park.ts";
 
 async function main() {
     let disneyland: Park | undefined = undefined;
@@ -15,7 +15,7 @@ async function main() {
     if (disneyland) {
         console.log("Disneyland:", disneyland.toString());
     } else {
-        console.log("Failed to retrieve DCA data.");
+        console.log("Failed to retrieve Disneyland data.");
     }
 
     if (dca) {

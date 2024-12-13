@@ -1,27 +1,14 @@
-import { Park } from "./Park";
-import { Land } from "./Land";
-import {Ride} from "./Ride";
+import { Park } from "./Park.ts";
+import { Land } from "./Land.ts";
+import {Ride} from "./Ride.ts";
 
 export class JsonTools {
-    // public deserializeRide(data: any): Ride {
-    //     return new Ride(data.id, data.name, data.last_updated, data.is_open, data.wait_time)
-    // }
-    //
-    // public deserializeLand(data: any): Land {
-    //     const rides = data.rides.map((rideData: any) => this.deserializeRide(rideData));
-    //     return new Land(data.id, data.name, rides)
-    // }
-    //
-    // public deserializePark(json: string): Park {
-    //     const data = JSON.parse(json);
-    //     const lands = data.lands.map((land: any) => this.deserializeLand(land));
-    //     return new Park(lands);
-    // }
 
     public async fetchAndDeserializePark(url: RequestInfo | URL) {
         try {
-            // Fetch JSON data from the provided URL
-            const response = await fetch(url);
+
+            const response = await fetch(url, {
+                mode: 'no-cors'});
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }

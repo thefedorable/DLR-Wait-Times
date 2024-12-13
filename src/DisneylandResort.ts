@@ -1,5 +1,5 @@
-import {Park} from "./Park";
-import {JsonTools} from "./JsonTools";
+import {Park} from "./Park.ts";
+import {JsonTools} from "./JsonTools.ts";
 
 export class DisneylandResort {
     private Disneyland: Park | undefined;

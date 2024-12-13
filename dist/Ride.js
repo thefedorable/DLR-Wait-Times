@@ -1,7 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Ride = void 0;
-class Ride {
+export class Ride {
+    id;
+    name;
+    last_updated;
+    is_open;
+    wait_time;
     constructor(id, name, lastUpdated, isOpen, waitTime) {
         this.id = id || 0;
         this.name = name || '';
@@ -52,4 +54,3 @@ class Ride {
         return result;
     }
 }
-exports.Ride = Ride;

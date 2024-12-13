@@ -1,4 +1,4 @@
-import { Land } from "./Land";
+import { Land } from "./Land.ts";
 
 export class Park {
     private lands: Land[];

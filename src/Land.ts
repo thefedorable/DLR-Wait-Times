@@ -1,4 +1,4 @@
-import { Ride } from "./Ride";
+import { Ride } from "./Ride.ts";
 
 export class Land {
     private id: number;
