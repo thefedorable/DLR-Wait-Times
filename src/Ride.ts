@@ -1,4 +1,4 @@
-class Ride {
+export class Ride {
     private id: number;
     private name: string;
     private last_updated: string;
@@ -53,7 +53,7 @@ class Ride {
         this.wait_time = wait_time
     }
 
-    toString(): string {
+    public toString(): string {
         let result = '';
         if (this.is_open) {
             result += `     ${this.name}\n`;
