@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/DLR-Wait-Times.iml" filepath="$PROJECT_DIR$/.idea/DLR-Wait-Times.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/WaitTimes.iml" filepath="$PROJECT_DIR$/.idea/WaitTimes.iml" />
     </modules>
   </component>
 </project>
