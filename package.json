@@ -12,12 +12,15 @@
     "@capacitor/android": "^6.2.0",
     "@capacitor/cli": "^6.2.0",
     "@capacitor/core": "^6.2.0",
+    "body-parser": "^1.20.3",
     "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonp": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.27",
+    "@types/react": "^18.3.18",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
     "typescript": "^4.9.3",

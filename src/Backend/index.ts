@@ -3,14 +3,14 @@ import {Park} from "./Park";
 
 async function main() {
     let disneyland: Park | undefined = undefined;
-    let dca: Park | undefined = undefined;
+    //let dca: Park | undefined = undefined;
     const disneylandResort = new DisneylandResort();
 
     await disneylandResort.setDisneyland();
-    await disneylandResort.setDCA();
+    //await disneylandResort.setDCA();
 
     disneyland = disneylandResort.getDisneyland();
-    dca = disneylandResort.getDCA();
+    //dca = disneylandResort.getDCA();
 
     if (disneyland) {
         console.log("Disneyland:", disneyland.toString());
@@ -18,11 +18,11 @@ async function main() {
         console.log("Failed to retrieve Disneyland data.");
     }
 
-    if (dca) {
-        console.log("DCA:", dca.toString());
-    } else {
-        console.log("Failed to retrieve DCA data.");
-    }
+    // if (dca) {
+    //     console.log("DCA:", dca.toString());
+    // } else {
+    //     console.log("Failed to retrieve DCA data.");
+    // }
 }
 
 // Run the main function

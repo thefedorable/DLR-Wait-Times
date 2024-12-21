@@ -1,29 +1,25 @@
-import { DisneylandResort } from "./Backend/DisneylandResort";
 import React, { useState, useEffect } from "react";
-import { Park } from "./Backend/Park";
 
 const Message: React.FC = () => {
     const [message, setMessage] = useState("Waiting...");
 
     useEffect(() => {
-        const DLR: DisneylandResort = new DisneylandResort();
-
-        setTimeout(() => {
-            const disneyland: Park | undefined = DLR.getDummyDisneyland();
-            setMessage(disneyland.toString());
-            }, 3000);
-        // DLR.setDisneyland()
-        //     .then(() => {
-        //         setTimeout(() => {
-        //             const disneyland: Park | undefined = DLR.getDisneyland();
-        //             if (disneyland) {
-        //                 setMessage(disneyland.toString());
-        //             } else {
-        //                 setMessage("Error");
-        //             }
-        //         }, 3000);
-        //     })
-        //     .catch(console.error);
+        // Call the API
+        fetch("http://localhost:5000/disneyland")
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log("API Response:", data); // Log the API response
+                setMessage("Data received! Check console for details.");
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+                setMessage("Error fetching data.");
+            });
     }, []);
 
     return (
@@ -34,3 +30,4 @@ const Message: React.FC = () => {
 };
 
 export default Message;
+

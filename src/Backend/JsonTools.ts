@@ -6,8 +6,12 @@ export class JsonTools {
 
     public async fetchAndDeserializePark(url: RequestInfo | URL) {
         try {
-
-            const response = await fetch(url);
+            
+            const response = await fetch(url, {
+                headers: {
+                    "Access-Control-Allow-Origin" : "*"
+                },
+            });
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
