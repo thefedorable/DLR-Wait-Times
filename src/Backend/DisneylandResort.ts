@@ -1,18 +1,18 @@
-import {Park} from "./Park";
-import {JsonTools} from "./JsonTools";
+import {Park} from "./Park.js";
+import {JsonTools} from "./JsonTools.js";
 
 export class DisneylandResort {
-    private Disneyland: Park | undefined;
-    private DCA: Park | undefined;
+    private Disneyland: Park;
+    private DCA: Park;
 
     constructor() {
-        this.Disneyland = undefined;
-        this.DCA = undefined;
+        this.Disneyland = new Park([]);
+        this.DCA = new Park([]);
     }
 
     public async setDisneyland(): Promise<void> {
         await (async () => {
-            const url = "https://queue-times.com/parks/16/queue_times.json";
+            const url = "/api/disneyland";
             try {
                 let jsonHelper: JsonTools = new JsonTools();
                 this.Disneyland = await jsonHelper.fetchAndDeserializePark(url);
@@ -22,7 +22,7 @@ export class DisneylandResort {
         })();
     }
 
-    public getDisneyland(): Park | undefined {
+    public getDisneyland(): Park {
         return this.Disneyland;
     }
 
@@ -34,7 +34,7 @@ export class DisneylandResort {
 
     public async setDCA(): Promise<void> {
         await (async () => {
-            const url = "https://queue-times.com/parks/17/queue_times.json";
+            const url = "/api/dca";
             try {
                 let jsonHelper: JsonTools = new JsonTools();
                 this.DCA = await jsonHelper.fetchAndDeserializePark(url)
@@ -44,7 +44,7 @@ export class DisneylandResort {
         })();
     }
 
-    public getDCA(): Park | undefined {
+    public getDCA(): Park {
         return this.DCA;
     }
 

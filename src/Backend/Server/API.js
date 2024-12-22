@@ -1,8 +1,6 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
-import { DisneylandResort } from "./DisneylandResort";
-import { Ride } from "./Ride";
 
 const app = express();
 const port = 5000;
@@ -11,35 +9,34 @@ const port = 5000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// Simulate data for simplicity
-let disneylandResort:DisneylandResort = new DisneylandResort();
-
 // Fetch Disneyland data
-app.get("/disneyland", async (req: Request, res: Response) => {
+app.get("/api/disneyland", async (req, res) => {
+    const url = "https://queue-times.com/parks/16/queue_times.json";
     try {
-        if (!disneylandResort.getDisneyland()) {
-            await disneylandResort.setDisneyland();
-        }
-        await res.json(disneylandResort.getDisneyland());
+        const response = await fetch(url); // Fetch JSON from the URL
+        const data = await response.json(); // Parse the JSON
+        res.json(data); // Return the fetched JSON as the response
     } catch (error) {
-        await res.status(500).json({message: "Error fetching Disneyland data", error});
+        console.error('Error fetching JSON:', error);
+        res.status(500).json({ error: 'Failed to fetch JSON' });
     }
 });
 
 // Fetch DCA data
-app.get("/dca", async (req: Request, res: Response) => {
+app.get("/api/dca", async (req, res) => {
+    const url = "https://queue-times.com/parks/17/queue_times.json";
     try {
-        if (!disneylandResort.getDCA()) {
-            await disneylandResort.setDCA();
-        }
-        res.json(disneylandResort.getDCA());
+        const response = await fetch(url); // Fetch JSON from the URL
+        const data = await response.json(); // Parse the JSON
+        res.json(data); // Return the fetched JSON as the response
     } catch (error) {
-        res.status(500).json({ message: "Error fetching DCA data", error });
+        console.error('Error fetching JSON:', error);
+        res.status(500).json({ error: 'Failed to fetch JSON' });
     }
 });
 
 // Add or update a ride
-app.post("/rides", (req: Request, res: Response) => {
+app.post("/rides", (req, res) => {
     const { id, name, last_updated, is_open, wait_time } = req.body;
     try {
         const ride = new Ride(id, name, last_updated, is_open, wait_time);
@@ -50,7 +47,7 @@ app.post("/rides", (req: Request, res: Response) => {
 });
 
 // Get information about a specific ride
-app.get("/rides/:id", async (req: Request, res: Response) => {
+app.get("/rides/:id", async (req, res) => {
     const rideId = parseInt(req.params.id);
     try {
         const ride = await findRideById(rideId); // A helper function to find the ride
@@ -65,7 +62,7 @@ app.get("/rides/:id", async (req: Request, res: Response) => {
 });
 
 // Helper to find a ride by ID
-async function findRideById(id: number): Promise<Ride | null> {
+async function findRideById(id) {
     if (!disneylandResort.getDisneyland()) await disneylandResort.setDisneyland();
     const park = disneylandResort.getDisneyland();
     if (park) {

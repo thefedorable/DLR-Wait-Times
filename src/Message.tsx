@@ -1,20 +1,17 @@
 import React, { useState, useEffect } from "react";
+import { Park } from "./Backend/Park";
+import { DisneylandResort } from "./Backend/DisneylandResort"
 
 const Message: React.FC = () => {
     const [message, setMessage] = useState("Waiting...");
+    let DLR: DisneylandResort = new DisneylandResort();
 
     useEffect(() => {
         // Call the API
-        fetch("http://localhost:5000/disneyland")
+        DLR.setDisneyland()
             .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log("API Response:", data); // Log the API response
-                setMessage("Data received! Check console for details.");
+                let DL: Park = DLR.getDisneyland();
+                setMessage(DL.toString())
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);

@@ -12,6 +12,7 @@ export class JsonTools {
                     "Access-Control-Allow-Origin" : "*"
                 },
             });
+            
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
