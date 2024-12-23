@@ -1,9 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import path from "path"
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
@@ -72,6 +73,16 @@ async function findRideById(id) {
         }
     }
     return null;
+}
+
+// Serve the React app in production
+if (process.env.NODE_ENV === 'production') {
+    const buildPath = path.join(__dirname, 'dist'); // Adjust to your build directory
+    app.use(express.static(buildPath));
+
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(buildPath, 'index.html'));
+    });
 }
 
 // Start the server

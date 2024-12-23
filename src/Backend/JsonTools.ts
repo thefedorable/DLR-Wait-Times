@@ -40,7 +40,7 @@ export class JsonTools {
         }
     }
 
-    public deserialize(data): Park {
+    public deserialize(data: { lands: any; rides?: { id: number; name: string; is_open: boolean; wait_time: number; last_updated: string; }[]; }): Park {
         const lands = data.lands.map((landData: { rides: any[]; id: number; name: string; }) => {
             const rides = landData.rides.map((rideData) => {
                 return new Ride(
